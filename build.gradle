@@ -7,7 +7,8 @@ buildscript {
         retrofit_version = '2.3.0'
         adapter_livedata_version = '1.0.0'
         kotlinx_version = '0.4.0'
-
+        room_version = '2.2.0'
+        anko_version = '0.10.8'
     }
 
     repositories {
