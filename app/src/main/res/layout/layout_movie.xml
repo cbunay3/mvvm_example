@@ -25,9 +25,22 @@
             tools:text="@tools:sample/full_names" />
 
         <TextView
-            android:id="@+id/tv_overview"
+            android:id="@+id/tv_originalTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="@tools:sample/first_names" />
+
+        <TextView
+            android:id="@+id/tv_genre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="@tools:sample/first_names" />
+
+        <TextView
+            android:id="@+id/tv_releaseDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="@tools:sample/first_names" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>
