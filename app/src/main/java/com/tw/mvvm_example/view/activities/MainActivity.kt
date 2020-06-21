@@ -3,6 +3,9 @@ package com.tw.mvvm_example.view.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.tw.mvvm_example.R
 import com.tw.mvvm_example.transactionalmodels.Movie
 import com.tw.mvvm_example.transactionalmodels.MoviesWrapper
@@ -15,13 +18,16 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var navigationController: NavController
     private val viewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        viewModel.getMoviesService()
+//        viewModel.getMoviesService()
         getMovies()
+        navigationController = NavHostFragment.findNavController(navigationHostFragment)
+        NavigationUI.setupActionBarWithNavController(this, navigationController)
     }
 
     private fun getMovies(){
@@ -34,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                     viewModel.movies.addAll(response.body()?.results as ArrayList<Movie>)
                     val movies = viewModel.movies
                     movies.map {
-                        movies_text.append(it.toString()+"\n\n")
+//                        movies_text.append(it.toString()+"\n\n")
                     }
                 }
             }
