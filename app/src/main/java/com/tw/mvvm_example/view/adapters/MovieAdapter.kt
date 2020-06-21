@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tw.mvvm_example.R
 import com.tw.mvvm_example.transactionalmodels.Movie
 import kotlinx.android.synthetic.main.layout_movie.view.*
-import org.jetbrains.anko.sdk27.coroutines.onClick
 
 class MovieAdapter(
     private val items: List<Movie>
@@ -31,8 +30,9 @@ class MovieAdapter(
         fun bind(movie: Movie) =
             with(itemView) {
                 tv_title.text = movie.title
-                tv_overview.text = movie.overview
-                itemView.onClick {
+                tv_originalTitle.text = movie.original_title
+                tv_releaseDate.text = movie.release_date
+                itemView.setOnClickListener {
                     println("redirecting to the details")
                 }
             }
