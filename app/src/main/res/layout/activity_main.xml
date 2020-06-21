@@ -6,13 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".view.activities.MainActivity">
 
-    <TextView
-        android:id="@+id/tv_welcome_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+    android:id="@+id/movies_scroll"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical"
+    android:fillViewport="true"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:id="@+id/movies_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+</ScrollView>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
