@@ -9,6 +9,8 @@ buildscript {
         adapter_livedata_version = '1.0.0'
         kotlinx_version = '0.4.0'
         lifecycleVersion = '2.0.0'
+        anko_version = '0.10.8'
+        glide_version = '4.9.0'
     }
 
     repositories {
