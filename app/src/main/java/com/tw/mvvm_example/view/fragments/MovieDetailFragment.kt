@@ -1,5 +1,6 @@
 package com.tw.mvvm_example.view.fragments
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.tw.mvvm_example.R
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.UI
@@ -49,14 +51,33 @@ class MovieDetailFragment : Fragment() {
         {
             scrollView {
                 verticalLayout {
-                    showMovieInformation("Título:", title)
-
+                    showMovieInformation("Título: ", title)
+                    loadMovieImage(view)
                     showMovieInformation("Título original: ", originalTitle)
-                    showMovieInformation("Fecha de lanzamiento:", releaseDate)
-                    showMovieInformation("Overview:", overview)
+                    showMovieInformation("Fecha de lanzamiento: ", releaseDate)
+                    showMovieInformation("Overview: ", overview)
 
-                }.lparams(width = wrapContent, height = wrapContent)
+                }.lparams(width = wrapContent, height = wrapContent){
+
+                }
             }.lparams(width = matchParent, height = matchParent)
+        }
+    }
+
+    private fun @AnkoViewDslMarker _LinearLayout.loadMovieImage(
+        view: View
+    ) {
+        imageView {
+            val imageUrl = "https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.png"
+            Glide.with(view)
+                .load(imageUrl).fitCenter()
+                .override(matchParent, wrapContent)
+                .error(R.drawable.movie)
+                .into(this)
+        }.lparams()
+        {
+            rightMargin = dip(15)
+            leftMargin = dip(15)
         }
     }
 
@@ -70,6 +91,7 @@ class MovieDetailFragment : Fragment() {
                 text = header
                 textSizeDimen = R.dimen.text_size_content
                 textColor = ContextCompat.getColor(context, R.color.colorBlack)
+                setTypeface(typeface, Typeface.BOLD)
             }.lparams(
                 width = wrapContent, height = wrapContent
             )
@@ -79,6 +101,10 @@ class MovieDetailFragment : Fragment() {
             }.lparams(
                 width = wrapContent, height = wrapContent
             )
-        }.lparams(width = wrapContent, height = wrapContent)
+        }.lparams(width = wrapContent, height = wrapContent){
+            topMargin= dip(10)
+            leftMargin = dip(10)
+            bottomMargin= dip(10)
+        }
     }
 }
