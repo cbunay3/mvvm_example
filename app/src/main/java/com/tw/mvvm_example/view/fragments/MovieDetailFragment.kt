@@ -12,11 +12,13 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.tw.mvvm_example.R
 import com.tw.mvvm_example.transactionalmodels.Movie
+import com.tw.mvvm_example.view.activities.MainActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.UI
 
 
 class MovieDetailFragment : Fragment() {
+    private lateinit var mainActivity: MainActivity
     private lateinit var movie: Movie
     private lateinit var title: String
     private lateinit var original_title: String
@@ -40,6 +42,7 @@ class MovieDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        mainActivity = this.activity as MainActivity
         return createMainLayout()
     }
 
@@ -56,6 +59,7 @@ class MovieDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mainActivity.activeButtonBack()
         drawingMovie(view)
     }
 

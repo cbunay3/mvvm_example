@@ -1,6 +1,7 @@
 package com.tw.mvvm_example.view.activities
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -17,5 +18,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         navigationController = NavHostFragment.findNavController(navigationHostFragment)
         NavigationUI.setupActionBarWithNavController(this, navigationController)
+    }
+
+    fun activeButtonBack() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            super.onBackPressed()
+        }
+        return true
     }
 }
