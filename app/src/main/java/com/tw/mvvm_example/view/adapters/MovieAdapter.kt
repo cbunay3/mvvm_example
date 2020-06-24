@@ -1,8 +1,11 @@
 package com.tw.mvvm_example.view.adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavOptions
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.tw.mvvm_example.R
 import com.tw.mvvm_example.transactionalmodels.Movie
@@ -32,9 +35,24 @@ class MovieAdapter(
                 tv_title.text = movie.title
                 tv_originalTitle.text = movie.original_title
                 tv_releaseDate.text = movie.release_date
+
+                val movieBundle = Bundle().apply {
+                    putSerializable("movieSelected", movie)
+                }
                 itemView.setOnClickListener {
                     println("redirecting to the details")
+                    itemView.findNavController()
+                        .navigate(
+                            R.id.movieDetailFragment,
+                            movieBundle,
+                            navOptions,
+                            null
+                        )
                 }
             }
     }
+
+    val navOptions = NavOptions.Builder().setEnterAnim(R.anim.slide_in_right)
+        .setPopEnterAnim(R.anim.slide_in_left).setExitAnim(R.anim.slide_out_left)
+        .setPopExitAnim(R.anim.slide_out_right).build()
 }

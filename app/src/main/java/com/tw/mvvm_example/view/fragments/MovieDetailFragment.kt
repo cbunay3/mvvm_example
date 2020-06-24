@@ -2,6 +2,7 @@ package com.tw.mvvm_example.view.fragments
 
 import android.graphics.Typeface
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,17 +11,29 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.tw.mvvm_example.R
+import com.tw.mvvm_example.transactionalmodels.Movie
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.UI
 
 
 class MovieDetailFragment : Fragment() {
-    private var title = "Some title"
-    private var originalTitle = "Original title"
-    private var releaseDate = "yyyy-mm-dd"
-    private var overview =
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    private var posterPath = "url"
+    private lateinit var movie: Movie
+    private lateinit var title: String
+    private lateinit var original_title: String
+    private lateinit var release_date: String
+    private lateinit var overview: String
+    private lateinit var poster_path: String
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val bundle = arguments
+        movie = bundle?.get("movieSelected") as Movie
+        title = movie.title
+        original_title = movie.original_title
+        release_date = movie.release_date
+        overview = movie.overview
+        poster_path = movie.poster_path
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,11 +66,11 @@ class MovieDetailFragment : Fragment() {
                 verticalLayout {
                     showMovieInformation("Título: ", title)
                     loadMovieImage(view)
-                    showMovieInformation("Título original: ", originalTitle)
-                    showMovieInformation("Fecha de lanzamiento: ", releaseDate)
+                    showMovieInformation("Título original: ", original_title)
+                    showMovieInformation("Fecha de lanzamiento: ", release_date)
                     showMovieInformation("Overview: ", overview)
 
-                }.lparams(width = wrapContent, height = wrapContent){
+                }.lparams(width = wrapContent, height = wrapContent) {
 
                 }
             }.lparams(width = matchParent, height = matchParent)
@@ -68,16 +81,17 @@ class MovieDetailFragment : Fragment() {
         view: View
     ) {
         imageView {
-            val imageUrl = "https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.png"
+            val imageUrl = "https://image.tmdb.org/t/p/original/$poster_path"
             Glide.with(view)
                 .load(imageUrl).fitCenter()
-                .override(matchParent, wrapContent)
+                .override(500, 1000)
                 .error(R.drawable.movie)
                 .into(this)
         }.lparams()
         {
             rightMargin = dip(15)
             leftMargin = dip(15)
+            gravity = Gravity.CENTER_HORIZONTAL
         }
     }
 
@@ -98,13 +112,14 @@ class MovieDetailFragment : Fragment() {
             textView {
                 text = headerValue
                 textColor = ContextCompat.getColor(context, R.color.colorBlack)
+                textSizeDimen = R.dimen.text_size_body
             }.lparams(
                 width = wrapContent, height = wrapContent
             )
-        }.lparams(width = wrapContent, height = wrapContent){
-            topMargin= dip(10)
+        }.lparams(width = wrapContent, height = wrapContent) {
+            topMargin = dip(10)
             leftMargin = dip(10)
-            bottomMargin= dip(10)
+            bottomMargin = dip(10)
         }
     }
 }

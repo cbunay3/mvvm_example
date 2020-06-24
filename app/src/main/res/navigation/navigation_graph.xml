@@ -8,4 +8,9 @@
         android:id="@+id/movieListFragment"
         android:name="com.tw.mvvm_example.view.fragments.MovieListFragment"
         android:label="Movies List" />
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.tw.mvvm_example.view.fragments.MovieDetailFragment"
+        android:label="Movies Detail" />
+
 </navigation>
