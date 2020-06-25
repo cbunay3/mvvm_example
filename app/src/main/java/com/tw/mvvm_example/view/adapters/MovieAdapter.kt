@@ -8,6 +8,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.tw.mvvm_example.R
+import com.tw.mvvm_example.constants.Constants.Companion.MOVIE_SELECTED
 import com.tw.mvvm_example.transactionalmodels.Movie
 import kotlinx.android.synthetic.main.layout_movie.view.*
 
@@ -37,7 +38,7 @@ class MovieAdapter(
                 tv_releaseDate.text = movie.release_date
 
                 val movieBundle = Bundle().apply {
-                    putSerializable("movieSelected", movie)
+                    putSerializable(MOVIE_SELECTED, movie)
                 }
                 itemView.setOnClickListener {
                     println("redirecting to the details")

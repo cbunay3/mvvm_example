@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.tw.mvvm_example.R
+import com.tw.mvvm_example.constants.Constants.Companion.MOVIE_SELECTED
 import com.tw.mvvm_example.transactionalmodels.Movie
 import com.tw.mvvm_example.view.activities.MainActivity
 import org.jetbrains.anko.*
@@ -29,7 +30,7 @@ class MovieDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val bundle = arguments
-        movie = bundle?.get("movieSelected") as Movie
+        movie = bundle?.get(MOVIE_SELECTED) as Movie
         title = movie.title
         original_title = movie.original_title
         release_date = movie.release_date
@@ -68,11 +69,11 @@ class MovieDetailFragment : Fragment() {
         {
             scrollView {
                 verticalLayout {
-                    showMovieInformation("Título: ", title)
+                    showMovieInformation(R.string.movie_title, title)
                     loadMovieImage(view)
-                    showMovieInformation("Título original: ", original_title)
-                    showMovieInformation("Fecha de lanzamiento: ", release_date)
-                    showMovieInformation("Overview: ", overview)
+                    showMovieInformation(R.string.original_title, original_title)
+                    showMovieInformation(R.string.release_date, release_date)
+                    showMovieInformation(R.string.overview, overview)
 
                 }.lparams(width = wrapContent, height = wrapContent) {
 
@@ -85,7 +86,7 @@ class MovieDetailFragment : Fragment() {
         view: View
     ) {
         imageView {
-            val imageUrl = "https://image.tmdb.org/t/p/original/$poster_path"
+            val imageUrl = context.getString(R.string.image_url)+ poster_path
             Glide.with(view)
                 .load(imageUrl).fitCenter()
                 .override(500, 1000)
@@ -100,13 +101,13 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun @AnkoViewDslMarker _LinearLayout.showMovieInformation(
-        header: String,
+        idText: Int,
         headerValue: String
     ) {
         linearLayout {
             orientation = LinearLayout.HORIZONTAL
             textView {
-                text = header
+                text = context.getString(idText)
                 textSizeDimen = R.dimen.text_size_content
                 textColor = ContextCompat.getColor(context, R.color.colorBlack)
                 setTypeface(typeface, Typeface.BOLD)
