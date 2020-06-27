@@ -1,7 +1,9 @@
 package com.tw.mvvm_example.application
 
 import android.app.Application
+import com.tw.mvvm_example.di.mapperModule
 import com.tw.mvvm_example.di.networkModule
+import com.tw.mvvm_example.di.persistenceModule
 import com.tw.mvvm_example.di.viewModelsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -14,8 +16,7 @@ class CustomApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@CustomApplication)
-            modules(listOf(networkModule, viewModelsModule))
+            modules(listOf(networkModule, viewModelsModule, persistenceModule, mapperModule))
         }
     }
-
 }
