@@ -7,14 +7,14 @@ import com.tw.mvvm_example.model.dtos.MovieDto
 import com.tw.mvvm_example.model.mappers.MovieMapper
 import com.tw.mvvm_example.model.models.MovieEntity
 
-class MovieRepository(dataBase: ApplicationDatabase, private val movieMapper: MovieMapper) {
+class MovieRepository(private val movieMapper: MovieMapper) {
 
+    private lateinit var dataBase: ApplicationDatabase
     private val movieDao: MovieDao = dataBase.movieDao()
 
-    fun save(moviesDto: List<MovieDto>): List<MovieEntity> {
-        var moviesEntity = movieMapper.mapToEntity(moviesDto)
-        movieDao.insert(moviesEntity)
-        return moviesEntity
+    fun save(movieDtos: List<MovieDto>): List<Long> {
+        var moviesEntity = movieMapper.mapToEntity(movieDtos)
+        return movieDao.insert(moviesEntity)
     }
 
     fun getAll(): LiveData<List<MovieEntity>> {

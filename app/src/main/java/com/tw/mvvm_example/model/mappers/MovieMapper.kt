@@ -5,9 +5,9 @@ import com.tw.mvvm_example.model.models.MovieEntity
 
 class MovieMapper {
 
-    fun mapToEntity(moviesDto: List<MovieDto>): List<MovieEntity> {
+    fun mapToEntity(movieDtos: List<MovieDto>): List<MovieEntity> {
         val moviesEntity: MutableList<MovieEntity> = mutableListOf()
-        moviesDto.map { moviesEntity.add(mapToEntity(it)) }
+        movieDtos.map { moviesEntity.add(mapToEntity(it)) }
         return moviesEntity
     }
 
@@ -22,9 +22,9 @@ class MovieMapper {
     )
 
     fun mapToDto(moviesEntity: List<MovieEntity>): List<MovieDto> {
-        val moviesDto: MutableList<MovieDto> = mutableListOf()
-        moviesEntity.map { moviesDto.add(mapToDto(it)) }
-        return moviesDto
+        val movieDtos: MutableList<MovieDto> = mutableListOf()
+        moviesEntity.map { movieDtos.add(mapToDto(it)) }
+        return movieDtos
     }
 
     fun mapToDto(movieEntity: MovieEntity) = MovieDto(
