@@ -41,7 +41,6 @@ class MovieAdapter(
                     putSerializable(MOVIE_SELECTED, movie)
                 }
                 itemView.setOnClickListener {
-                    println("redirecting to the details")
                     itemView.findNavController()
                         .navigate(
                             R.id.movieDetailFragment,

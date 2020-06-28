@@ -16,7 +16,6 @@ val viewModelsModule = module {
 }
 
 val repositoryModule = module {
-    single { RetrofitService().getRetrofitMoviesService() }
     factory { MovieRepository(get(), get()) }
 }
 

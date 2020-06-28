@@ -22,7 +22,6 @@ import retrofit2.Response
 
 class MovieListFragment : Fragment() {
 
-
     private val viewModel: MainViewModel by viewModel()
     private lateinit var mainActivity: MainActivity
 
