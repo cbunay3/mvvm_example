@@ -1,7 +1,5 @@
 package com.tw.mvvm_example.di
 
-import android.content.Context
-import android.content.SharedPreferences
 import androidx.room.Room
 import com.tw.mvvm_example.database.ApplicationDatabase
 import com.tw.mvvm_example.model.mappers.MovieMapper
@@ -19,14 +17,14 @@ val viewModelsModule = module {
 
 val repositoryModule = module {
     single { RetrofitService().getRetrofitMoviesService() }
-    factory { MovieRepository(get()) }
+    factory { MovieRepository(get(), get()) }
 }
 
 val networkModule = module {
     single { RetrofitService().getRetrofitMoviesService() }
 }
 
-val persistenceModule = module {
+val dBModule = module {
     single {
         Room.databaseBuilder(
             androidContext(),
@@ -35,6 +33,8 @@ val persistenceModule = module {
             .fallbackToDestructiveMigration()
             .build()
     }
+
+    single { get<ApplicationDatabase>().movieDao() }
 }
 
 val mapperModule = module {
