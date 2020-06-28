@@ -11,6 +11,7 @@ buildscript {
         lifecycleVersion = '2.0.0'
         anko_version = '0.10.8'
         glide_version = '4.9.0'
+        room_version = "2.2.5"
     }
 
     repositories {
