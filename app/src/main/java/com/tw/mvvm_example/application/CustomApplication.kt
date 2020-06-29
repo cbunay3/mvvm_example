@@ -14,7 +14,7 @@ class CustomApplication : Application() {
             androidLogger()
             androidContext(this@CustomApplication)
             modules(
-                listOf(networkModule, viewModelsModule, repositoryModule, dBModule, mapperModule)
+                listOf(networkModule, viewModelsModule, repositoryModule, dbModule, mapperModule)
             )
         }
     }

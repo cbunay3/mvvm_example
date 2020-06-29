@@ -13,7 +13,6 @@ import com.tw.mvvm_example.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.layout_movies.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-
 class MovieListFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModel()
@@ -32,8 +31,14 @@ class MovieListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getMovies(this)
+        val isInternetAvailable = isInternetAvailable()
+        viewModel.getMovies(this, isInternetAvailable)
         populateMovies()
+    }
+
+    private fun isInternetAvailable(): Boolean {
+        val command = "ping -c 1 google.com"
+        return Runtime.getRuntime().exec(command).waitFor() == 0
     }
 
     private fun populateMovies() {
