@@ -9,7 +9,7 @@ import com.tw.mvvm_example.model.models.MovieEntity
 class MovieRepository(private val movieDao: MovieDao, private val movieMapper: MovieMapper) {
 
     fun save(movieDtos: List<MovieDto>): List<Long> {
-        var moviesEntity = movieMapper.mapToEntity(movieDtos)
+        val moviesEntity = movieMapper.mapToEntity(movieDtos)
         return movieDao.insert(moviesEntity)
     }
 
