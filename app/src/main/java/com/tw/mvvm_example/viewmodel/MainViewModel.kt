@@ -1,17 +1,19 @@
 package com.tw.mvvm_example.viewmodel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import com.tw.mvvm_example.model.dtos.MovieDto
 import com.tw.mvvm_example.model.services.MovieService
-import com.tw.mvvm_example.transactionalmodels.Movie
-import com.tw.mvvm_example.transactionalmodels.MoviesWrapper
 import me.linshen.retrofit2.adapter.ApiErrorResponse
 import me.linshen.retrofit2.adapter.ApiSuccessResponse
-import retrofit2.Call
 
 class MainViewModel(
     private val movieService: MovieService
 ) : ViewModel() {
-    var movies: MutableLiveData<List<Movie>> = MutableLiveData()
+    var movies: MutableLiveData<List<MovieDto>> = MutableLiveData()
+
     init {
         movies.value = listOf()
     }

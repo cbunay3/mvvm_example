@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.tw.mvvm_example.R
 import com.tw.mvvm_example.constants.Constants.Companion.MOVIE_SELECTED
-import com.tw.mvvm_example.transactionalmodels.Movie
+import com.tw.mvvm_example.model.dtos.MovieDto
 import com.tw.mvvm_example.view.activities.MainActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.UI
@@ -20,22 +20,12 @@ import org.jetbrains.anko.support.v4.UI
 
 class MovieDetailFragment : Fragment() {
     private lateinit var mainActivity: MainActivity
-    private lateinit var movie: Movie
-    private lateinit var title: String
-    private lateinit var original_title: String
-    private lateinit var release_date: String
-    private lateinit var overview: String
-    private lateinit var poster_path: String
+    private lateinit var movie: MovieDto
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val bundle = arguments
-        movie = bundle?.get(MOVIE_SELECTED) as Movie
-        title = movie.title
-        original_title = movie.original_title
-        release_date = movie.release_date
-        overview = movie.overview
-        poster_path = movie.poster_path
+        movie = bundle?.get(MOVIE_SELECTED) as MovieDto
     }
 
     override fun onCreateView(
@@ -69,11 +59,11 @@ class MovieDetailFragment : Fragment() {
         {
             scrollView {
                 verticalLayout {
-                    showMovieInformation(R.string.movie_title, title)
+                    showMovieInformation(R.string.movie_title, movie.title)
                     loadMovieImage(view)
-                    showMovieInformation(R.string.original_title, original_title)
-                    showMovieInformation(R.string.release_date, release_date)
-                    showMovieInformation(R.string.overview, overview)
+                    showMovieInformation(R.string.original_title, movie.originalTitle)
+                    showMovieInformation(R.string.release_date, movie.releaseDate)
+                    showMovieInformation(R.string.overview, movie.overview)
 
                 }.lparams(width = wrapContent, height = wrapContent) {
 
@@ -86,7 +76,7 @@ class MovieDetailFragment : Fragment() {
         view: View
     ) {
         imageView {
-            val imageUrl = context.getString(R.string.image_url)+ poster_path
+            val imageUrl = context.getString(R.string.image_url)+ movie.posterPath
             Glide.with(view)
                 .load(imageUrl).fitCenter()
                 .override(500, 1000)

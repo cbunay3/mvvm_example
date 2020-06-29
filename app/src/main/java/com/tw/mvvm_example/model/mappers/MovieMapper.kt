@@ -15,10 +15,10 @@ class MovieMapper {
         id = movieDto.id,
         title = movieDto.title,
         overview = movieDto.overview,
-        poster_path = movieDto.poster_path,
-        release_date = movieDto.release_date,
-        original_title = movieDto.original_title,
-        original_language = movieDto.original_language
+        posterPath = movieDto.posterPath,
+        releaseDate = movieDto.releaseDate,
+        originalTitle = movieDto.originalTitle,
+        originalLanguage = movieDto.originalLanguage
     )
 
     fun mapToDto(moviesEntity: List<MovieEntity>): List<MovieDto> {
@@ -31,10 +31,10 @@ class MovieMapper {
         id = movieEntity.id,
         title = movieEntity.title,
         overview = movieEntity.overview,
-        poster_path = movieEntity.poster_path,
-        release_date = movieEntity.release_date,
-        original_title = movieEntity.original_title,
-        original_language = movieEntity.original_language
+        posterPath = movieEntity.posterPath,
+        releaseDate = movieEntity.releaseDate,
+        originalTitle = movieEntity.originalTitle,
+        originalLanguage = movieEntity.originalLanguage
     )
 
 }

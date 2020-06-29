@@ -2,7 +2,7 @@ package com.tw.mvvm_example.model.services
 
 import androidx.lifecycle.LiveData
 import com.tw.mvvm_example.constants.Constants.Companion.KEY_API_MOVIE
-import com.tw.mvvm_example.transactionalmodels.MoviesWrapper
+import com.tw.mvvm_example.model.dtos.MoviesWrapper
 import me.linshen.retrofit2.adapter.ApiResponse
 import retrofit2.http.GET
 
