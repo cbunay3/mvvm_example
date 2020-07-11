@@ -7,8 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.compose.Composable
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.ui.foundation.Text
+import androidx.ui.material.MaterialTheme
+import androidx.ui.tooling.preview.Preview
 import com.bumptech.glide.Glide
 import com.tw.mvvm_example.R
 import com.tw.mvvm_example.constants.Constants.Companion.MOVIE_SELECTED
@@ -36,6 +40,12 @@ class MovieDetailFragment : Fragment() {
         release_date = movie.release_date
         overview = movie.overview
         poster_path = movie.poster_path
+
+    }
+
+    @Composable
+    fun text(){
+        Text(text= "testing")
     }
 
     override fun onCreateView(
@@ -61,6 +71,7 @@ class MovieDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mainActivity.activeButtonBack()
+        //text()
         drawingMovie(view)
     }
 
