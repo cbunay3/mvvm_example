@@ -11,8 +11,7 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelsModule = module {
-    viewModel { MainViewModel(get()) }
-
+    viewModel { MainViewModel(get(), get(), get()) }
 }
 
 val repositoryModule = module {
@@ -23,7 +22,7 @@ val networkModule = module {
     single { RetrofitService().getRetrofitMoviesService() }
 }
 
-val dBModule = module {
+val dbModule = module {
     single {
         Room.databaseBuilder(
             androidContext(),
@@ -32,7 +31,6 @@ val dBModule = module {
             .fallbackToDestructiveMigration()
             .build()
     }
-
     single { get<ApplicationDatabase>().movieDao() }
 }
 

@@ -9,11 +9,11 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.tw.mvvm_example.R
 import com.tw.mvvm_example.constants.Constants.Companion.MOVIE_SELECTED
-import com.tw.mvvm_example.transactionalmodels.Movie
+import com.tw.mvvm_example.model.dtos.MovieDto
 import kotlinx.android.synthetic.main.layout_movie.view.*
 
 class MovieAdapter(
-    private val items: List<Movie>
+    private val items: List<MovieDto>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -31,11 +31,11 @@ class MovieAdapter(
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(movie: Movie) =
+        fun bind(movie: MovieDto) =
             with(itemView) {
                 tv_title.text = movie.title
-                tv_originalTitle.text = movie.original_title
-                tv_releaseDate.text = movie.release_date
+                tv_originalTitle.text = movie.originalTitle
+                tv_releaseDate.text = movie.releaseDate
 
                 val movieBundle = Bundle().apply {
                     putSerializable(MOVIE_SELECTED, movie)
