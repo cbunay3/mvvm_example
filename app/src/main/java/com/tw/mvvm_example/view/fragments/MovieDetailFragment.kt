@@ -59,11 +59,11 @@ class MovieDetailFragment : Fragment() {
         {
             scrollView {
                 verticalLayout {
-                    showMovieInformation(R.string.movie_title, movie.title)
+                    showMovieInformation(R.string.movie_title, movie.title?:"")
                     loadMovieImage(view)
-                    showMovieInformation(R.string.original_title, movie.originalTitle)
-                    showMovieInformation(R.string.release_date, movie.releaseDate)
-                    showMovieInformation(R.string.overview, movie.overview)
+                    showMovieInformation(R.string.original_title, movie.originalTitle?:"")
+                    showMovieInformation(R.string.release_date, movie.releaseDate?:"")
+                    showMovieInformation(R.string.overview, movie.overview?:"")
 
                 }.lparams(width = wrapContent, height = wrapContent) {
 

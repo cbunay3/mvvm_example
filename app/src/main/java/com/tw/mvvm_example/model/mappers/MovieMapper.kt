@@ -13,12 +13,12 @@ class MovieMapper {
 
     fun mapToEntity(movieDto: MovieDto) = MovieEntity(
         id = movieDto.id,
-        title = movieDto.title,
-        overview = movieDto.overview,
-        posterPath = movieDto.posterPath,
-        releaseDate = movieDto.releaseDate,
-        originalTitle = movieDto.originalTitle,
-        originalLanguage = movieDto.originalLanguage
+        title = movieDto.title?:"",
+        overview = movieDto.overview?:"",
+        posterPath = movieDto.posterPath?:"",
+        releaseDate = movieDto.releaseDate?:"",
+        originalTitle = movieDto.originalTitle?:"",
+        originalLanguage = movieDto.originalLanguage?:""
     )
 
     fun mapToDto(moviesEntity: List<MovieEntity>): List<MovieDto> {

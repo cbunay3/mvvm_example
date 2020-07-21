@@ -36,9 +36,10 @@ class MainViewModel(
                             }
                         }
                         is ApiErrorResponse -> {
-                            println("Unable to get api response")
+                            println("Unable to get api response " + response)
                         }
                     }
+
                 })
         } else {
             movieRepository.getAll().observe(owner,
