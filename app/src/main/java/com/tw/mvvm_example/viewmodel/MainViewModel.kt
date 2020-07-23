@@ -25,7 +25,7 @@ class MainViewModel(
 
     fun getMovies(owner: LifecycleOwner, isInternetAvailable: Boolean) {
         if (isInternetAvailable) {
-            movieService.getMoviesService().observe(owner,
+            movieService.getMovies().observe(owner,
                 Observer { response ->
                     when (response) {
                         is ApiSuccessResponse -> {
